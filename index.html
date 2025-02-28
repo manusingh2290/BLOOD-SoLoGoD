@@ -67,17 +67,14 @@
             background-color: blue;
             display: none;
         }
-        /* Container for player sections */
 .flex-container {
     display: flex;
     flex-wrap: wrap;
-    gap: 20px; /* Adjusts the space between items */
+    gap: 20px;
 }
-
-/* Individual player section */
 .flex-item {
-    flex: 1 1 45%; /* Adjusts the width of each item */
-    min-width: 200px; /* Ensures a minimum width for each item */
+    flex: 1 1 45%;
+    min-width: 200px;
 }
 
     </style>
@@ -127,17 +124,14 @@
         formContainer.innerHTML = "";
     
         if (type === "") {
-            return; // Exit if no tournament type is selected
+            return;
         }
     
         let numPlayers = type === "solo" ? 1 : type === "duo" ? 2 : 4;
-    
-        // Create a div to act as the flex container
         let flexContainer = document.createElement('div');
         flexContainer.className = 'flex-container';
     
         for (let i = 1; i <= numPlayers; i++) {
-            // Create a div for each player section
             let playerDiv = document.createElement('div');
             playerDiv.className = 'flex-item';
             playerDiv.innerHTML = `
@@ -200,12 +194,12 @@
         }
 
         function validateUID(input) {
-            input.value = input.value.replace(/\D/g, ""); // Remove non-numeric characters
+            input.value = input.value.replace(/\D/g, "");
             if (input.value.length > 9) input.value = input.value.slice(0, 9);
         }
 
         function validateMobile(input) {
-            input.value = input.value.replace(/\D/g, ""); // Remove non-numeric characters
+            input.value = input.value.replace(/\D/g, "");
             if (input.value.length > 10) input.value = input.value.slice(0, 10);
         }
 
@@ -213,8 +207,7 @@
             document.getElementById("updateBtn").style.display = "none";
         }
         document.getElementById("bgmiForm").addEventListener("submit", function(event) {
-    event.preventDefault(); // Prevent form from refreshing
-
+    event.preventDefault();
     let type = document.getElementById("tournamentType").value;
     if (type === "") {
         alert("Please select a tournament type.");
@@ -234,8 +227,6 @@
             gender: player.querySelector(".gender").value,
             tier: player.querySelector(".tier").value
         };
-
-        // Validation
         if (!playerData.name || !playerData.email || !playerData.mobile || !playerData.ign || !playerData.uid) {
             alert("Please fill in all required fields.");
             return;
@@ -243,8 +234,6 @@
 
         playersData.push(playerData);
     });
-
-    // Append data to table
     let tableBody = document.querySelector("#dataTable tbody");
 
     playersData.forEach(player => {
@@ -261,8 +250,6 @@
         `;
         tableBody.appendChild(row);
     });
-
-    // Clear form fields after submission
     document.getElementById("formContainer").innerHTML = "";
     document.getElementById("tournamentType").value = "";
 });
